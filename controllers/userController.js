@@ -61,11 +61,12 @@ export const userLogin = async (req, res, next) => {
 export const userProfile = async (req, res, next) => {
     try {
 
-        const {user}=req
+        const {user}=req;
+        
 
-        const userData = await userData.findById(user.id).select('-password')
+        const userDatas = await userData.findById(user.id).select('-password')
 
-        res.json({ success: true, message: "user profile fetched", userData });
+        res.json({ success: true, message: "user profile fetched", userDatas });
     } catch (error) {
         console.log(error);
         res.status(error.statusCode || 500).json(error.message || 'Internal server error')
